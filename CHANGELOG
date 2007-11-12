@@ -1,0 +1,17 @@
+1.2
+* Fixed a bug where users entering an incorrect
+  password at runtime would be unable to have
+  a second chance without closing and reopening
+  their browser
+* Added javascript controls to queue items,
+  allowing them to be sorted via drag and drop
+  on top of the existing queue controls
+
+1.1
+* Fixed a minor Javascript bug with an empty Queue
+* Added support for requesting the password at runtime
+* Fixed a stylesheet bug making buttons hard to click
+* Fixed a queue ETA bug
+
+1.0
+* Initial release
