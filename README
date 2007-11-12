@@ -1,0 +1,7 @@
+HelloHella 1.1
+---------------------
+
+Usage is pretty simple, copy config-sample.php to config.php
+then change the settings to match your HellaNZB install.
+Then upload and view the site within your web browser. That should
+be all that's necessary.
