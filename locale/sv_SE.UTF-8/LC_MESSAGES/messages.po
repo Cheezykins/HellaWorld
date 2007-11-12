@@ -1,0 +1,257 @@
+# HellaWorld 1.8 Svenska
+# Copyright (C) 2007 Chris Stretton
+# This file is distributed under the same license as the HellaWorld package.
+# Chris Stretton.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HellaWorld 1.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-08-30 02:56+0300\n"
+"PO-Revision-Date: 2007-08-30 02:56+0300\n"
+"Last-Translator: Ludvig Ericson\n"
+"Language-Team: Core\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../index.php:72 ../../../index.php:85
+msgid "Unauthorized access"
+msgstr ""
+
+#: ../../../index.php:89
+msgid "Access Forbidden"
+msgstr ""
+
+#: ../../../index.php:279 ../../../index.php:294
+msgid "Unable to write to completed.xml, please check permissions"
+msgstr ""
+
+#: ../../../index.php:300
+msgid "Invalid ID provided"
+msgstr ""
+
+#: ../../../js/hellaworld.php:59
+msgid "Apologies, there was an error while making the request"
+msgstr ""
+
+#: ../../../js/hellaworld.php:76 ../../../templates/default.php:101
+msgid "Currently Downloading"
+msgstr ""
+
+#: ../../../js/hellaworld.php:79 ../../../templates/default.php:104
+#, php-format
+msgid "%s%% complete"
+msgstr "%s%% färdigt"
+
+#: ../../../js/hellaworld.php:80 ../../../templates/default.php:105
+#, php-format
+msgid "%sMB of %sMB remaining"
+msgstr "%sMB av %sMB återstående"
+
+#: ../../../js/hellaworld.php:83 ../../../templates/default.php:106
+msgid "PAUSED"
+msgstr "PAUSAD"
+
+#: ../../../js/hellaworld.php:85 ../../../templates/default.php:106
+#, php-format
+msgid "ETA %s at %sKB/s"
+msgstr ""
+
+#: ../../../js/hellaworld.php:89 ../../../js/hellaworld.php:95
+#: ../../../templates/default.php:108 ../../../templates/default.php:114
+msgid "Nothing"
+msgstr "Ingenting"
+
+#: ../../../js/hellaworld.php:91 ../../../templates/default.php:110
+msgid "Currently Processing"
+msgstr "Pågående Nedladdning"
+
+#: ../../../js/hellaworld.php:104 ../../../templates/default.php:130
+msgid "Drag me"
+msgstr "Drag Mig"
+
+#: ../../../js/hellaworld.php:105 ../../../templates/default.php:132
+#, php-format
+msgid "%sMB"
+msgstr ""
+
+#: ../../../js/hellaworld.php:107 ../../../templates/default.php:132
+#, php-format
+# Preceeding space required
+msgid " ETA: %s"
+msgstr ""
+
+#: ../../../js/hellaworld.php:121 ../../../templates/default.php:178
+msgid "Remove"
+msgstr "Tag bort"
+
+#: ../../../js/hellaworld.php:122 ../../../templates/default.php:180
+#, php-format
+msgid "Finished on: %s Processing Time: %s"
+msgstr "Avklarat den %s. Processeringstid: %s"
+
+#: ../../../js/hellaworld.php:124 ../../../templates/default.php:180
+#, php-format
+# Preceeding space required
+msgid " Par message: %s"
+msgstr " Par Meddelande: %s"
+
+#: ../../../js/hellaworld.php:157
+msgid "This will reorder the entire queue, continue?"
+msgstr ""
+
+#: ../../../templates/default.php:62
+#, php-format
+msgid "HellaNZB %s - Uptime: %s"
+msgstr "HellaNZB %s - Drifttid: %s"
+
+#: ../../../templates/default.php:63
+#, php-format
+msgid "Downloaded: %s files in %s segments totalling %sMB via %s NZB files"
+msgstr "Nedladdat: %s fil(er) i %s segment, totalt %sMB genom %s NZB fil(er)"
+
+#: ../../../templates/default.php:68
+msgid "Add NZB Via Newzbin ID Or URL"
+msgstr "Lägg till NZB via Newzbin ID eller URL"
+
+#: ../../../templates/default.php:73
+msgid "Article ID or URL:"
+msgstr "Artikel-ID eller URL:"
+
+#: ../../../templates/default.php:77
+msgid "Set Rate Limit"
+msgstr "Justera Taktbegränsning"
+
+#: ../../../templates/default.php:82
+msgid "Limit (KB/s):"
+msgstr "Begränsning (KB/s):"
+
+#: ../../../templates/default.php:91
+msgid "Resume downloading"
+msgstr "Återuppta nedladdning"
+
+#: ../../../templates/default.php:93
+msgid "Pause current download"
+msgstr "Pausa pågående nedladdning"
+
+#: ../../../templates/default.php:95
+msgid "Cancel current download"
+msgstr "Avbryt pågående nedladdning"
+
+#: ../../../templates/default.php:95
+msgid ""
+"This will cancel the current download and remove it from the queue, continue?"
+msgstr ""
+"Detta kommer att avbryta den pågående nedladdning och ta bort den från kön, "
+"fortsätt?"
+
+#: ../../../templates/default.php:96
+msgid "Shut down HellaNZB"
+msgstr "Stäng av HellaNZB"
+
+#: ../../../templates/default.php:96
+msgid "HellaNZB cannot be restarted without shell access, continue?"
+msgstr "HellaNZB kan inte starta om utan &quot;shell&quot;-åtkomst, fortsätt?"
+
+#: ../../../templates/default.php:97
+msgid "Clear the queue"
+msgstr "Rensa kön"
+
+#: ../../../templates/default.php:97
+msgid "This cannot be undone, continue?"
+msgstr "Detta kan inte ångras, fortsätt?"
+
+#: ../../../templates/default.php:120
+#, php-format
+msgid "Queued: %s items totalling %sMB"
+msgstr "Kö: %s nedladdningar, totalt %sMB"
+
+#: ../../../templates/default.php:139
+msgid "Refresh every 15 seconds"
+msgstr "Ladda om var femtonde sekund"
+
+#: ../../../templates/default.php:142
+msgid "Reorder Items"
+msgstr "Sortera Nedladdningar"
+
+#: ../../../templates/default.php:142
+msgid "by"
+msgstr "efter"
+
+#: ../../../templates/default.php:142
+msgid "Provided Order"
+msgstr "Given Sortering"
+
+#: ../../../templates/default.php:142
+msgid "Name"
+msgstr "Namn"
+
+#: ../../../templates/default.php:142
+msgid "Size"
+msgstr "Storlek"
+
+#: ../../../templates/default.php:142
+msgid "Ascending"
+msgstr "Stigande"
+
+#: ../../../templates/default.php:142
+msgid "Descending"
+msgstr "Fallande"
+
+#: ../../../templates/default.php:152
+msgid "Log Entries"
+msgstr "Loggposter"
+
+#: ../../../templates/default.php:153
+msgid "Finished Items"
+msgstr "Klara Nedladdningar"
+
+#: ../../../templates/default.php:154
+msgid "Bookmarklet"
+msgstr ""
+
+#: ../../../templates/default.php:164
+#, php-format
+msgid "Finished items: %s"
+msgstr "Klara nedladdningar: %s"
+
+#: ../../../templates/default.php:166
+msgid "Clear Finished NZBs"
+msgstr "Rensa klara NZB:er"
+
+#: ../../../templates/default.php:189
+msgid "HellaWorld Bookmarklet"
+msgstr ""
+
+#: ../../../templates/default.php:190
+msgid ""
+"Right click on this link and bookmark it, or drag it to your bookmarks/"
+"favorites to create a Newzbin shortcut. Clicking on this shortcut when on a "
+"Newzbin article will add the NZB to HellaNZB's queue."
+msgstr ""
+"Högerklicka på denna länk och bokmärk den, eller drag den till dina "
+"bokmärken/favoriter för att skapa en Newzbin genväg. Om du klickar på "
+"genvägen i en Newzbin-artikel kommer den att lägga till NZB:en i HellaNZBs "
+"kö."
+
+#: ../../../templates/default.php:191
+msgid "Send to HellaWorld"
+msgstr "Skicka till HellaWorld"
+
+#: ../../../templates/rarpass.php:44
+msgid "Set Rar Password"
+msgstr ""
+
+#: ../../../templates/rarpass.php:51
+msgid "Rar password updated"
+msgstr ""
+
+#: ../../../templates/rarpass.php:57
+msgid "Password:"
+msgstr ""
+
+#: ../../../templates/rarpass.php:58
+msgid "Set Password"
+msgstr ""

@@ -1,0 +1,62 @@
+HellaWorld v1.8-SVN
+---------------------
+
+*General Use*
+
+General usage is pretty simple, copy config-sample.php to config.php
+then change the settings to match your HellaNZB install.
+Then upload and view the site within your web browser. That should
+be all that's necessary.
+
+*Supported Languages*
+
+Multiple languages are supported using GNU Gettext. Language codes are
+in the form of lang_COUNTRY, so en_GB for English or sv_SE for Swedish.
+
+Language codes with translations available are:
+en_GB - English (Default)
+en_US - American English
+nl_NL - Dutch
+sv_SE - Swedish
+
+If you would like to translate HellaWorld into your native language,
+please read the GNU Gettext documentation, the standard English messages
+are located in locale/en_GB.UTF-8/messages.po
+
+*Tracking Finished Items*
+
+Tracking finished items will show a list of items completed by HellaNZB
+but requires that both HellaNZB and HellaWorld be running on the same
+machine, and does not work on Windows.
+
+To track finished items you will have to edit your HellaNZB config to
+include a Hellanzb.EXTERNAL_HANDLER_SCRIPT directive, like so:
+
+Hellanzb.EXTERNAL_HANDLER_SCRIPT = '/path/to/hellaworld/completed.php'
+
+For this to work, hellaworld/completed.xml must be writable by both the
+user that HellaNZB is running as, and the user that HellaWorld is running
+as. The latter is usually the same user that the web server is running as.
+
+Displaying the finished items can be turned on or off in your config.php,
+see the updates to config-sample.php to see what to add to existing
+configurations.
+
+Credits
+---------------------
+Many thanks for the suggestions, help and bug finding from:
+
+Mat "Drarok" Gadd <http://www.drarok.com> for running safari and finding
+all its javascript weaknesses for me, suggesting new features and helping
+with general debugging.
+
+Ludvig "toxik" Ericson <http://www.lericson.se> for various suggestions
+for new features and modification of existing features.
+
+"dannyp" in #hellanzb on freenode for suggesting the bookmarklet.
+
+Many thanks to the FatBoyLan crew for providing me with a place to host my
+site and Subversion repositories.
+http://www.fatboylan.co.uk
+
+$Id$
