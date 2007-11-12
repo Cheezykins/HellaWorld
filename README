@@ -1,0 +1,19 @@
+HellaWorld v1.6-SVN
+---------------------
+
+Usage is pretty simple, copy config-sample.php to config.php
+then change the settings to match your HellaNZB install.
+Then upload and view the site within your web browser. That should
+be all that's necessary.
+
+Credits
+---------------------
+Many thanks for the suggestions, help and bug finding from:
+Mat "Drarok" Gadd <http://www.drarok.com>
+Ludvig "toxik" Ericson <http://www.lericson.se>
+
+Many thanks to the FatBoyLan crew for providing me with a place to host my
+site and Subversion repositories.
+http://www.fatboylan.co.uk
+
+$Id$

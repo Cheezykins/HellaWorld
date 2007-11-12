@@ -1,0 +1,12 @@
+/* $Id$ */
+.handle {
+	display: none;
+}
+
+#refresher {
+	display: none;
+}
+
+#sortdirection {
+	display: inline;
+}
