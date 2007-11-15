@@ -1,0 +1,24 @@
+/* $Id$ */
+.handle {
+	display: none;
+}
+
+#refresher {
+	display: none;
+}
+
+#sortdirection {
+	display: inline;
+}
+
+#tabcontainer {
+	padding: 10px;
+}
+
+#tabcontainer ul {
+	display: none;
+}
+
+#log {
+	margin-top: -10px;
+}

@@ -1,0 +1,78 @@
+HellaWorld v1.10-SVN
+---------------------
+
+*General Intall*
+
+The installation is as simple as these 5 steps:
+
+1) Copy config-sample.php to config.php
+2) Open config.php in your favorite text editor
+3) Edit the settings as you wish
+4) Save and close your text editor
+5) Upload the files to your webserver and view in your browser of choice
+
+For more detailed configuration information, please read on.
+
+*Authentication*
+
+HellaWorld supports 4 authentication modes.
+
+Open: Open to everyone without a password (Default)
+Closed: Login required every time you visit
+Hybrid: Open for specified IP ranges (defaults to the 3 standard private
+        address ranges) login is required for all others
+Exclusive: Closed for all addresses except those in the specified IP
+           range
+
+*Supported Languages*
+
+Multiple languages are supported using GNU Gettext. Language codes are
+in the form of lang_COUNTRY, so en_GB for English or sv_SE for Swedish.
+
+Language codes with translations available are:
+en_GB - English (Default)
+en_US - American English
+nl_NL - Dutch
+sv_SE - Swedish
+
+If you would like to translate HellaWorld into your native language,
+please read the GNU Gettext documentation, the standard English messages
+are located in locale/en_GB.UTF-8/messages.po
+
+*Tracking Finished Items*
+
+Tracking finished items will show a list of items completed by HellaNZB
+but requires that both HellaNZB and HellaWorld be running on the same
+machine, and does not work on Windows.
+
+To track finished items you will have to edit your HellaNZB config to
+include a Hellanzb.EXTERNAL_HANDLER_SCRIPT directive, like so:
+
+Hellanzb.EXTERNAL_HANDLER_SCRIPT = '/path/to/hellaworld/completed.php'
+
+For this to work, hellaworld/completed.xml must be writable by both the
+user that HellaNZB is running as, and the user that HellaWorld is running
+as. The latter is usually the same user that the web server is running as.
+
+Displaying the finished items can be turned on or off in your config.php,
+see the updates to config-sample.php to see what to add to existing
+configurations.
+
+Credits
+---------------------
+Many thanks for the suggestions, help and bug finding from:
+
+Mat "Drarok" Gadd <http://www.drarok.com> for running safari and finding
+all its javascript weaknesses for me, suggesting new features and helping
+with general debugging.
+
+Ludvig "toxik" Ericson <http://www.lericson.se> for various suggestions
+for new features and modification of existing features.
+
+"dannyp" in #hellanzb on freenode for suggesting the bookmarklet.
+
+Many thanks to the FatBoyLan crew for providing me with a place to host my
+site and Subversion repositories.
+http://www.fatboylan.co.uk
+
+$Id$

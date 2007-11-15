@@ -1,0 +1,231 @@
+1.10
+
+* Fixed a bug where queue items with an ETA over 24 but less than 48
+  hours long weren't showing the days in the ETA
+
+* Updated the bookmarklet to support Newzbin v2 and Newzxxx
+
+1.9
+
+* Fixed a bug where the total number of iles and the number of NZB files
+  processed wasn't showing. [ticket:5]
+
+* Fixed a bug where the automatic refresh would reduce the log to a single
+  line of text in IE. [ticket:4]
+
+* Changed the display of timestamps to match HellaNZB, making them clearer
+
+* Fixed a bug where the automatic refresh wouldn't update the final queue
+  item when it began downloading [ticket:13]
+
+* Dropped requirement for the Ctype library [ticket:12]
+
+* Fixed a bug where finished items were still trying to be read despite
+  the display of finished items being disabled. [ticket:15]
+
+* Fixed a bug where only one processing item was showing after an auto
+  refresh when HellaNZB was processing multiple items. [ticket:14]
+
+* Added the ability to manually call the auto-refresh feature.
+
+* Tidied up the appearance of HellaWorld when javascript is disabled.
+
+* Altered the current, somewhat confusing, authentication system to a more
+  intuitive configuration, also allowing for IP based authentication. This
+  change has added options to the configuration file, please see the
+  README for details
+
+* Added further automatic refresh support for remaining data that wasn't
+  already being refreshed by the 15 second automatic refresher [ticket:17]
+
+1.8
+
+* Fixed a Javascript bug where the 15 second refresh would start multiple
+  refreshes after dragging and dropping. [ticket:2]
+
+* Replaced some javascript with jquery shortcuts
+
+* Made the Newzbin article ID box focused by default [ticket:3]
+
+* Rewrote the sorting of the queue by name to use a more natural sorting
+  algorithm, this means that, for example, "File 10" will come after
+  "File 2" instead of before it.
+
+* Fixed a bug where only one processing item would show when multiple
+  items were being processed.
+
+* Updated JQuery and its plugins to their latest versions, this will
+  improve performance for large queues slightly.
+
+* Added multi-call support to HellaController.
+
+* Made sorting take advantage of the multi-call support, speeding up queue
+  sorting significantly.
+
+* Added gettext multi-language support. For information on translating
+  HellaWorld to your language, please see the GNU Gettext documentation.
+
+* Added partial translation into Dutch (Thanks Stevuu)
+
+* Added partial translation into Swedish (Thanks Toxik)
+
+1.7
+
+* Added a workaround for a Javascript bug in Safari and Opera, which
+  prevented the non javascript stylesheet from being disabled.
+
+* Added a bookmarklet option, providing the ability to add NZBs to
+  HellaNZB from a Newzbin article page without having to leave the page.
+
+* Fixed a bug in the missing 'total_mb' field workaround. E_NOTICES should
+  no longer be generated if HellaNZB fails to provide a size for a file.
+
+* Fixed a Javascript bug where the queue wasn't updating on refresh.
+
+* Added the ability to track finished items, see README for more info.
+
+* Added support for SSL enabled webservers.
+
+* Meta items have been broken up into tabs to reduce the amount of
+  scrolling needed.
+
+1.6 -- HellaWorld
+
+* Name of project changed to HellaWorld due to similarity with HellaHella.
+
+* Changed the way stylesheets are handled by non Javascript enabled clients
+  to reduce the number of styles that need to be set at runtime by javascript
+  enabled browsers
+
+* Fixed a couple of minor CSS bugs in Internet Explorer
+
+* Fixed a bug where NZB names weren't having special characters converted to
+  html entities
+
+* Fixed a bug in the error handling page. The error page no longer attempts to
+  display HellaNZB status information when an error has occured, as under such
+  conditions displaying the information is most likely impossible.
+
+* Tidied up the javascript ever so slightly
+
+* added HellaController::setRarPass() to HellaController
+
+* Added the ability to specify a rar password for an NZB file from the queue.
+
+* Fixed an uninitialized value bug in the authentication system caused by a
+  typo
+
+* Fixed a bug where adding a url instead of a newzbin id would have no effect
+
+* Made sorting of the queue by name case insensitive
+
+* Made the way HellaController::getStatus() handles the log entries more
+  efficient
+
+* Fixed a bug in HellaController::enqueue() where it was incorrectly
+  parsing the input
+
+* Tidied up HellaController:enqueueNewzbin() to clarify it
+
+* Changed the input validation used by HellaController:enqueueURL() to
+  make it less strict, and able to handle local URLs
+
+* Changed the JSON template to use the PHP JSON extension.
+
+* Fixed HellaController:listNZBs() so that it actually returns the list
+  generated.
+
+* Added handling to HellaController:getStatus() so that no E_NOTICEs are
+  generated if HellaNZB doesn't return the size of a queue item
+
+* Fixed a bug where the path wasn't being determined properly if
+  HellaWorld was installed in a directory accessed via mod_alias
+
+1.5
+* Fixed a potential issue with the XML-RPC client, XML-RPC requests will now
+  timeout before the maximum execution time is reached
+
+* Added additional styles to the queue items so that they change colour on
+  mouseover
+
+* Fixed a bug where the option to refresh every 15 seconds was hidden if
+  no items were in the queue
+
+* Changed the re-order system from a select to a text box to reduce total
+  HTML output, this will speed up large queues significantly. It should also
+  help overcome a reoccuring bug in manual queue sorting where moving lots of
+  queue items in one direction could lead to them being jumbled up.
+
+* Moved from the bloated and slow script.aculo.us javascript framework to one
+  called jquery. This has sped up performance of the javascript for large
+  queues enormously.
+
+* Made AJAX refreshing of the details more efficient, using a single AJAX
+  request and returning JSON.
+
+* Reduced the number of XML-RPC requests required when moving a queue item via
+  drag and drop. Now it will only send requests for the queue item that moved
+  instead of it's previous behaviour of issueing move commands for every item,
+  regardless of whether it has moved or not.
+
+* Due to a bug in the new Javascript framework, drag and drop sorting has been
+  limited to a draggable handle on each queue item. This will be changed back
+  as soon as the bug in the framework is fixed. The bug prevents form elements
+  within draggables from baining focus, making it impossible to edit their
+  contents
+
+* Added extra information from HellaNZB such as the uptime, HellaNZB version
+  and total downloaded files, segments and NZB files.
+
+* Added the current HelloHella version to the page title and README for
+  clarity.
+
+1.4
+* Tidied up the HTML / Javascript
+
+* Moved parts of the template into their own files
+
+* Added a feature that saves the status of the log file, once shown the status
+  will be saved in a cookie and be kept shown until it is again hidden
+
+* Added an automatic refresh feature, when ticked the information will
+  automatically refresh every 15 seconds
+
+* Fixed a bug whereby sorting largue queues by a custom order could result in
+  a jumbled order.
+
+1.3
+* Fixed a bug in the javascript controls where the queue ETA wouldn't update
+  after dragging an item to the new position in the queue.
+
+* Fixed a bug where the currently processing NZB wasn't being displayed.
+
+* Fixed a bug in the progress bar where a download at 100% wouldn't show a
+  full bar.
+
+* Fixed a fatal bug in the input processing for enqueueing of NZB files via
+  URL or Newzbin Article ID.
+
+* Cleaned up some of the files, made the config file a
+  sample file by default.
+
+1.2
+* Fixed a bug where users entering an incorrect password at runtime would be
+  unable to have a second chance without closing and reopening their browser
+
+* Added javascript controls to queue items, allowing them to be sorted via
+  drag and drop on top of the existing queue controls
+
+1.1
+* Fixed a minor Javascript bug with an empty Queue
+
+* Added support for requesting the password at runtime
+
+* Fixed a stylesheet bug making buttons hard to click
+
+* Fixed a queue ETA bug
+
+1.0
+* Initial release
+
+$Id$
