@@ -214,7 +214,7 @@ $Id$
 					}
 					natcasesort($nzbName);
 					if ($sortdir == 2) {
-						$nzbName = array_reverse($nzbName);
+						$nzbName = array_reverse($nzbName, true);
 					}
 					$i = 1;
 					$c->multiCallStart();
@@ -229,7 +229,7 @@ $Id$
 					}
 					natsort($size);
 					if ($sortdir == 2) {
-						$size = array_reverse($size);
+						$size = array_reverse($size, true);
 					}
 					$i = 1;
 					$c->multiCallStart();
