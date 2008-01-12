@@ -243,7 +243,8 @@ $Id$
 				foreach($arguments as $argument) {
 
 					//add the argument to the argument array as an XML-RPC value
-					$atmp[] = new xmlrpcval($argument, 'int');
+					$type = (is_numeric($arguments) ? 'int' : 'string');
+					$atmp[] = new xmlrpcval($argument, $type);
 				}
 
 				// set the arguments to the temporary array
@@ -253,7 +254,8 @@ $Id$
 			} elseif ($arguments != '') {
 
 				// convert it to a one item array contianing an XML-RPC value
-				$arguments = array(new xmlrpcval($arguments, 'int'));
+				$type = (is_numeric($arguments) ? 'int' : 'string');
+				$arguments = array(new xmlrpcval($arguments, $type));
 			}
 
 			if ($this->multiCall) {

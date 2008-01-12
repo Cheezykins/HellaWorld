@@ -80,7 +80,7 @@
 		$('#masthead').html(status);
 		var info = "<h2><?php echo _('Currently Downloading'); ?></h2>";
 		if (json.downloading != null) {
-			info += "<div>" + json.downloading + "</div>";
+			info += '<div class="nzbname">' + json.downloading + '</div>';
 			info += '<div class="queuestats"><img alt="progress bar" src="progress.php?percentage=' + json.completed + '"/> <?php printf(_('%s%% complete'), "' + json.completed + '"); ?></div>';
 			info += '<div class="queuestats"><?php printf(_('%sMB of %sMB remaining'), "' + json.remaining + '", "' + json.size + '"); ?></div>';
 			info += '<div class="queuestats" style="margin-bottom: 5px;">';
@@ -132,7 +132,11 @@
 			if (json.finished.length > 0) {
 				for (i = 0; i < json.finished.length; i++) {
 					finished += '<li class="queuebox ' + json.finished[i].type + '">';
-					finished += '<div class="queuetitle">' + json.finished[i].archiveName + '</div>';
+					if (json.finished[i].url != '') {
+						finished += '<div><a class="queuetitle" href="' + json.finished[i].url + '">' + json.finished[i].archiveName + '</a></div>';
+					} else {
+						finished += '<div class="queuetitle">' + json.finished[i].archiveName + '</div>';
+					}
 					finished += '<ul class="queuecontrols"><li class="control"><a href="index.php?removefinished=' + json.finished[i].index + '"><?php echo _('Remove'); ?></a></li></ul>';
 					finished += '<div class="queuestats"><?php printf(_('Finished on: %s Processing Time: %s'), "' + json.finished[i].finishedTime + '", "' + json.finished[i].elapsedTime"); ?>;
 					if (json.finished[i].parMessage != '') {

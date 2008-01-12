@@ -61,14 +61,28 @@ p {
 	float: left;
 }
 
-#modules div {
+#nzbinput {
 	background: #eaeaea;
 	padding: 3px;
 	border: 1px solid #000;
 	border-top: 0px;
 	margin-bottom: 10px;
-	min-height: 36px;
-	height: 36px;
+	min-height: 30px;
+	height: 73px;
+}
+
+#downrate {
+	background: #eaeaea;
+	padding: 3px;
+	border: 1px solid #000;
+	border-top: 0px;
+	margin-bottom: 10px;
+	min-height: 30px;
+	height: 30px;
+}
+
+#modules div input {
+	left: 0px;
 }
 
 label {
@@ -151,6 +165,10 @@ h2 {
 	margin-bottom: 10px;
 }
 
+.queuebox.first {
+	margin-left: 310px;
+}
+
 .queuebox:hover {
 	background: #eaeaff;
 }
@@ -192,6 +210,12 @@ h2 {
 
 .queuetitle {
 	font-weight: bold;
+	color: black;
+}
+
+.queuetitle:visited {
+	font-weight: bold;
+	color: black;
 }
 
 ul.queuecontrols {

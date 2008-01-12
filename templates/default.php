@@ -46,6 +46,8 @@ $Id$
 		<link rel="stylesheet" type="text/css" href="style/nonjs.css" />
 		<link rel="stylesheet" type="text/css" href="style/thickbox.css" />
 		<link rel="stylesheet" type="text/css" href="style/tabs.css" />
+		<link rel="icon" href="images/trac.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="images/trac.ico" type="image/x-icon" />
 		<!--[if lte IE 7]>
 		<link rel="stylesheet" href="style/tabs-ie.css" type="text/css" />
 		<![endif]-->
@@ -66,16 +68,22 @@ $Id$
 		<div id="container">
 			<div id="modules">
 				<h2><?php echo _('Add NZB Via Newzbin ID Or URL'); ?></h2>
-				<div>
+				<div id="nzbinput">
 					<form method="get" action="<?php echo $self; ?>">
 						<fieldset>
+							<label for="nzbdownload"><?php echo _('Article ID or URL:'); ?><br /> <input type="text" name="nzbdownload" id="nzbdownload" /></label>
 							<input type="submit" value="Go" style="float:right;" />
-							<label for="nzbdownload"><?php echo _('Article ID or URL:'); ?> <input type="text" name="nzbdownload" id="nzbdownload" /></label>
+						</fieldset>
+					</form>
+					<form method="post" enctype="multipart/form-data" action="<?php echo $self; ?>">
+						<fieldset>
+							<label for="nzbupload" ><?php echo _('Upload NZB:'); ?><br/> <input size=27 type="file" name="nzbupload" id="nzbupload" /></label>
+							<input type="submit" value="Go" style="float:right;" />
 						</fieldset>
 					</form>
 				</div>
 				<h2><?php echo _('Set Rate Limit'); ?></h2>
-				<div>
+				<div id="downrate" >
 					<form method="get" action="<?php echo $self; ?>">
 						<fieldset>
 							<input type="submit" value="Go" style="float:right" />
@@ -100,7 +108,7 @@ $Id$
 				<div id="info">
 <h2><?php echo _('Currently Downloading'); ?></h2>
 <?php if ($c->downloadCount > 0): foreach($c->downloads as $download): ?>
-<div><?php echo htmlspecialchars($download['nzbName']); ?></div>
+<div class="nzbname"><?php echo htmlspecialchars($download['nzbName']); ?></div>
 <div class="queuestats"><img src="progress.php?percentage=<?php echo $c->completed; ?>" alt="progress bar" /> <?php printf(_('%s%% complete'), $c->completed); ?></div>
 <div class="queuestats"><?php printf(_('%sMB of %sMB remaining'), $c->remaining, $download['total_mb']); ?></div>
 <div class="queuestats" style="margin-bottom: 5px;"><?php if (!$c->paused): printf(_('ETA %s at %sKB/s'), $c->formatTimeStamp($c->eta), $c->transferRate); else: echo _('PAUSED'); endif; ?></div>
@@ -153,7 +161,9 @@ $Id$
 <div id="fragment-1">
 <div id="log"><?php foreach ($c->log as $line): echo $line . "<br />"; endforeach; ?></div>
 </div>
-<?php if (isset($config['showfinished']) && $config['showfinished']): $finishedcount = count($x->item); ?>
+<?php if (isset($config['showfinished']) && $config['showfinished']): $finishedcount = count($x->item);
+	$baseurl = (!strstr($config['basepath'], '://') ? $protocol . '://' . htmlentities($_SERVER['HTTP_HOST']) : '').$config['basepath'].'/';
+?>
 <div id="fragment-2">
 <div id="finishedbox">
 	<form action="<?php echo $self; ?>" method="post">
@@ -168,10 +178,19 @@ $Id$
 		<?php if ($finishedcount == 0): ?>
 			<li class="queuebox" style="text-align: center; font-weight: bold;"><?php echo _('No Finished Items'); ?></li>
 		<?php else: ?>
-			<?php $i = 0; foreach($x->item as $item): $i++; ?>
+			<?php $i = 0; foreach($x->item as $item):
+				$i++; $durl = '';
+				if (!strncmp($config['destpath'], (string)$item->destDir, strlen($config['destpath'])) && is_dir((string)$item->destDir)):
+					$durl = $baseurl.substr((string)$item->destDir, strlen($config['destpath'])+1);
+				endif
+			?>
 			<li class="queuebox <?php echo (((string)$item->type == 'SUCCESS') ? 'good' : 'bad'); ?>">
-				<div class="queuetitle">
-					<?php echo (string)$item->archiveName; ?>
+				<div>
+					<?php if ($config['showlinks'] && !empty($durl)): ?>
+					<div><a class="queuetitle" href="<?php echo $durl; ?>"><?php echo (string)$item->archiveName; ?></a></div>
+					<?php else: ?>
+					<div class="queuetitle"><?php echo (string)$item->archiveName; ?></div>
+					<?php endif ?>
 				</div>
 				<ul class="queuecontrols">
 					<li class="control"><a href="<?php echo $self; ?>?removefinished=<?php echo $i; ?>"><?php echo _('Remove'); ?></a></li>

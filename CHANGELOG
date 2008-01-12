@@ -1,9 +1,14 @@
 1.10
 
-* Fixed a bug where queue items with an ETA over 24 but less than 48
-  hours long weren't showing the days in the ETA
+* Applied David Kubicek's patch for HTTP-uploading of NZBs, see
+  http://trac.cheezyblog.net/ticket/21 for details. (drarok)
 
-* Updated the bookmarklet to support Newzbin v2 and Newzxxx
+* Fixed a bug where descending sort wouldn't work (chris)
+
+* Fixed a bug where queue items with an ETA over 24 but less than 48
+  hours long weren't showing the days in the ETA (chris)
+
+* Updated the bookmarklet to support Newzbin v2 and Newzxxx (chris)
 
 1.9
 

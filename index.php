@@ -274,6 +274,21 @@ $Id$
 			header('Location: ' . $protocol . '://' . $_SERVER['HTTP_HOST'] . $self);
 		}
 
+		if (array_key_exists('nzbupload', $_FILES)) {
+			$nzbfile = trim($_FILES['nzbupload']['tmp_name']);
+			chmod($nzbfile, 0644);
+			$nzbname = trim($_FILES['nzbupload']['name']);
+			if (preg_match('/\.nzb$/i', $nzbname)) {
+				$newfile = dirname($nzbfile)."/".$nzbname;
+				move_uploaded_file($nzbfile, $newfile);
+				$c->enqueue($newfile);
+				unlink($newfile);
+			} else {
+				throw new Exception("Invalid NZB upload!");
+			}
+			header('Location: ' . $protocol . '://' . $_SERVER['HTTP_HOST'] . $self);
+		}
+
 		if (array_key_exists('bookmarklet', $_GET)) {
 			if (preg_match('/((https?):\/\/)?(([A-Z0-9][A-Z0-9_-]*)((\.[A-Z0-9][A-Z0-9_-]*)+)?)(:(\d+))?(\/([^ ]*)?| |$)/i', $_GET['bookmarklet']) < 1) {
 				throw new Exception('Invalid bookmarklet URL');
