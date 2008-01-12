@@ -278,7 +278,7 @@ $Id$
 			$nzbfile = trim($_FILES['nzbupload']['tmp_name']);
 			chmod($nzbfile, 0644);
 			$nzbname = trim($_FILES['nzbupload']['name']);
-			if (preg_match('/\.nzb$/i', $nzbname)) {
+			if (preg_match('/\.(nzb|zip)$/i', $nzbname)) {
 				$newfile = dirname($nzbfile)."/".$nzbname;
 				move_uploaded_file($nzbfile, $newfile);
 				$c->enqueue($newfile);
