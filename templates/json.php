@@ -47,10 +47,10 @@ $hellainfo['status']['totalmb'] = $c->totalMB;
 $hellainfo['status']['totalnzbs'] = $c->totalNZBs;
 if ($c->downloadCount > 0) {
 	$hellainfo['downloading'] = htmlspecialchars($c->downloads[0]['nzbName']);
+	$hellainfo['size'] = $c->downloads[0]['total_mb'];
 }
 $hellainfo['paused'] = $c->paused;
 $hellainfo['completed'] = $c->completed;
-$hellainfo['size'] = $c->downloads[0]['total_mb'];
 $hellainfo['remaining'] = $c->remaining;
 $hellainfo['eta'] = $c->formatTimeStamp($c->eta);
 $hellainfo['transferRate'] = $c->transferRate;
