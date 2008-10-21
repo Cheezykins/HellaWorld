@@ -17,7 +17,6 @@ $dataset = new XML_Dataset('feeds.xml');
 // Loop over each feed, parse it, see if the latest episode has changed.
 foreach ($dataset->feed as $feed) {
 	$attrs =& $feed->attributes();
-	echo 'Checking ', $attrs->name, "\n";
 	
 	$atom = new Atom_Feed($attrs->url);
 	$latest = $atom->entry[0];
@@ -25,7 +24,8 @@ foreach ($dataset->feed as $feed) {
 	
 	if ($parsed->episode > $attrs->latest_episode) {
 		// There's a new ep!!!
-		echo sprintf('New ep!!! %s > %s', $parsed->episode, $attrs->latest_episode), "\n";
+		echo sprintf('New episode of %s (%s > %s)',
+				$attrs->name, $parsed->episode, $attrs->latest_episode), "\n";
 		$nzb_id = end(explode('/', substr($latest->id, 0, -1)));
 		
 		try {
@@ -35,7 +35,7 @@ foreach ($dataset->feed as $feed) {
 			echo $e->getMessage(), "\n";
 		}
 	} else {
-		echo 'Same old. '.$parsed->episode, "\n";
+//		echo 'Same old. '.$parsed->episode, "\n";
 	}
 }
 
