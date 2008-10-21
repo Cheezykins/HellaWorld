@@ -157,6 +157,7 @@ $Id$
 		<li><a accesskey="1" href="#fragment-1"><span><?php echo _('Log Entries'); ?></span></a></li>
 		<?php if (isset($config['showfinished']) && $config['showfinished']): ?><li><a accesskey="2" href="#fragment-2"><span><?php echo _('Finished Items'); ?></span></a></li><?php endif; ?>
 		<li><a accesskey="3" href="#fragment-3"><span><?php echo _('Bookmarklet'); ?></span></a></li>
+		<li><a accesskey="4" href="#fragment-4"><span><?php echo _('NZB Feeds'); ?></span></a></li>
 	</ul>
 <div id="fragment-1">
 <div id="log"><?php foreach ($c->log as $line): echo $line . "<br />"; endforeach; ?></div>
@@ -207,7 +208,27 @@ $Id$
 <h2><?php echo _('HellaWorld Bookmarklet'); ?></h2>
 <p class="bkmark"><?php echo _("Right click on this link and bookmark it, or drag it to your bookmarks/favorites to create a Newzbin shortcut. Clicking on this shortcut when on a Newzbin article will add the NZB to HellaNZB's queue."); ?></p>
 <p class="bkmark"><a href="javascript:c=location.href;if(c.match(/browse\/post\/\d+/)){location.href='<?php echo $protocol . '://' . htmlentities($_SERVER['HTTP_HOST']) . $self ?>?bookmarklet='+encodeURIComponent(c);}else{void(0);}"><?php echo _('Send to HellaWorld'); ?></a></p>
+<p class="bkmark"><a href="javascript:<?php
+$hw_url = $protocol.'://'.htmlentities($_SERVER['HTTP_HOST']).dirname($self);
+echo "var hw_url = '".$hw_url."'; var scriptElem = document.createElement('script');scriptElem.type = 'text/javascript';scriptElem.src = '".$hw_url."/js/autonzb.js';document.body.appendChild(scriptElem);void(0);"; ?>">NZB RSS to HellaWorld</a></p>
 </div>
+	
+	<div id="fragment-4">
+		<h2>NZB Feeds</h2>
+		<ul>
+<?php
+	if (! isset($dataset))
+		$dataset = new XML_Dataset('./feeds.xml');
+	if (count($dataset->feed) == 0)
+		echo '<li>There are no feeds to display.</li>', "\n";
+	else
+		foreach ($dataset->feed as $feed) {
+			$attrs = $feed->attributes();
+			echo sprintf('<li>%s (%s)</li>', $attrs->name, $attrs->latest_episode), "\n";
+		}
+?>
+		</ul>
+	</div>
 </div>
 	</body>
 </html>
