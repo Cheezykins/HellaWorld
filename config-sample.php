@@ -20,7 +20,7 @@
 		// this is a range of allowed IP addresses for hybrid and exclusive authentication,
 		// address ranges must be comma separated, use xxx.xxx.xxx.xxx/32 to limit it to a single
 		// address, where xxx.xxx.xxx.xxx is the address you wish to limit it to.
-		'iprange'		=>	'192.168.0.0/16,10.0.0.0/8,172.168.0.0/12',
+		'iprange'		=>	'192.168.0.0/16,10.0.0.0/8,172.16.0.0/12',
 
 		'showlinks'		=> false,			// Display direct links to downloaded files
 		'basepath'		=> '/media',		// The URL to the Apache alias to the downloads
