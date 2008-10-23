@@ -14,18 +14,45 @@ require_once('classes/nzb-helper.php');
 
 $dataset = new XML_Dataset('feeds.xml');
 
+// Have a look for command-line options.
+array_shift($_SERVER['argv']); // Drop the cron.php arg.
+$args = array_map('strtolower', $_SERVER['argv']);
+$verbose = in_array('-v', $args);
+
+// Remove the -v arg.
+if ($verbose)
+	unset($args[array_search('-v', $args)]);
+
+// Flag to track if we did any work.
+$did_run = FALSE;
+
 // Loop over each feed, parse it, see if the latest episode has changed.
 foreach ($dataset->feed as $feed) {
 	$attrs =& $feed->attributes();
 	
+	// Only fetch the ones specified, if any.
+	if ((bool) count($args)) {
+		if (! in_array(strtolower($attrs->name), $args)) {
+			$verbose AND printf("Skipping %s\n", $attrs->name);
+			continue;
+		};
+	};
+	
+	// Make a note that we did some work.
+	$did_run = TRUE;
+	
+	// Fetch the data from newzbin.
+	$verbose AND printf("Fetching feed for %s\n", $attrs->name);
 	$atom = new Atom_Feed($attrs->url);
 	$latest = $atom->entry[0];
 	$parsed = nzb::parse($latest->title);
 	
+	// Is the 1st item newer than the latest we recorded?
 	if ($parsed->episode > $attrs->latest_episode) {
-		// There's a new ep!!!
-		echo sprintf('New episode of %s (%s > %s)',
-				$attrs->name, $parsed->episode, $attrs->latest_episode), "\n";
+		echo sprintf('Queueing new episode of %s (%s)',
+				$attrs->name, $parsed->episode), "\n";
+		
+		// Grab the nzb id off the url.
 		$nzb_id = end(explode('/', substr($latest->id, 0, -1)));
 		
 		try {
@@ -35,8 +62,13 @@ foreach ($dataset->feed as $feed) {
 			echo $e->getMessage(), "\n";
 		}
 	} else {
-//		echo 'Same old. '.$parsed->episode, "\n";
+		$verbose AND printf("No new episode for %s (%d)\n", $attrs->name, $parsed->episode);
 	}
 }
 
+// Write the data back out.
 $dataset->save();
+
+// Check we did some work.
+if (! $did_run)
+	echo 'Warning: Did not check anything. Are you sure you spelled the show name right?', "\n";
