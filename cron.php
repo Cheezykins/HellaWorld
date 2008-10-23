@@ -17,6 +17,10 @@ $dataset = new XML_Dataset('feeds.xml');
 // Have a look for command-line options.
 array_shift($_SERVER['argv']); // Drop the cron.php arg.
 $args = array_map('strtolower', $_SERVER['argv']);
+
+if (in_array('--help', $args))
+	die("Usage: php cron.php [-v] [Show Name] [Show Name], ...\n");
+
 $verbose = in_array('-v', $args);
 
 // Remove the -v arg.
