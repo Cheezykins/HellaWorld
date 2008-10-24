@@ -25,7 +25,7 @@ if (in_array('--help', $args)) {
 		."OR\n"		
 		."\tphp manage.php remove <show name> [show name] ...\n"
 		."OR\n"
-		."\tphp manage.php list\n"
+		."\tphp manage.php [-v] list\n"
 		."OR\n"
 		."\tphp manage.php latest <show name> [episode number]\n"
 		."OR\n"
@@ -60,12 +60,14 @@ switch ($command) {
 	
 	// Output the list of feeds we have.
 	case 'list':
-		$feeds = $manager->feeds();
+		$feeds = $manager->feeds(TRUE);
 		$unit = (count($feeds) == 1) ? 'feed' : 'feeds';
+		$maxlen = arr::maxkeylen($feeds);
+		$format = $verbose ? "\t%-".$maxlen."s %d\n" : "\t%s\n";
 		
 		echo sprintf('%d %s:', count($feeds), $unit), "\n";
 		foreach ($feeds as $feed)
-			echo "\t", $feed, "\n";
+			printf($format, $feed['name'], $feed['latest_episode']);
 		break;
 	
 	// Get or set the latest_episode attribute.
