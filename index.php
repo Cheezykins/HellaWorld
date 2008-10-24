@@ -96,11 +96,7 @@ $Id$
 		}
 		$protocol = (($_SERVER['SERVER_PORT'] == 443) ? 'https' : 'http');
 
-		require_once 'classes/HellaController.php';
-		
-		require_once('classes/xml-dataset.php');
-		require_once('classes/atom-feed.php');
-		require_once('classes/nzb-helper.php');
+		require_once 'classes/autoload.php';
 
 		if ($auth == 'exclusive' && !ipInRange($iprange, $_SERVER['REMOTE_ADDR'])) {
 			throw new Exception('IP Address is not in an allowed range');
@@ -359,23 +355,9 @@ $Id$
 		}
 		
 		// Auto-NZB
-		if (array_key_exists('addfeed', $_GET)) {	
-			$dataset = new XML_Dataset('./feeds.xml');
-			
-			// Check we don't already have this feed...
-			foreach ($dataset->feed as $feed)
-				if ($feed->attributes()->url == $_GET['addfeed'])
-					throw new Exception('Feed already processed.');
-			
-			// Add the new feed!
-			$atom = new Atom_Feed($_GET['addfeed']);
-			$latest = reset($atom->entry);
-			$parsed = nzb::parse($latest);
-			
-			$feed = $dataset->addNode('feed', array('url' => $_GET['addfeed']));
-			$feed->addAttribute('name', $parsed->show);
-			$feed->addAttribute('latest_episode', $parsed->episode);
-			$dataset->save();					
+		if (array_key_exists('addfeed', $_GET)) {
+			$manager = new Feed_Manager();
+			$manager->add($_GET['addfeed']);
 		}
 
 	} catch (Exception $e) {

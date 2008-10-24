@@ -217,15 +217,20 @@ echo "var hw_url = '".$hw_url."'; var scriptElem = document.createElement('scrip
 		<h2>NZB Feeds</h2>
 		<ul>
 <?php
-	if (! isset($dataset))
-		$dataset = new XML_Dataset('./feeds.xml');
-	if (count($dataset->feed) == 0)
+	// We might need to instantiate a manager.
+	if (! isset($manager))
+		$manager = new Feed_Manager();
+	
+	// Grab the feeds.
+	$feeds = $manager->feeds(TRUE);
+	
+	// Are there any to show?
+	if (count($feeds) == 0)
 		echo '<li>There are no feeds to display.</li>', "\n";
 	else
-		foreach ($dataset->feed as $feed) {
-			$attrs = $feed->attributes();
-			echo sprintf('<li>%s (%s)</li>', $attrs->name, $attrs->latest_episode), "\n";
-		}
+		foreach ($feeds as $feed)
+			echo sprintf('<li>%s (%s)</li>',
+				$feed['name'], $feed['latest_episode']), "\n";
 ?>
 		</ul>
 	</div>

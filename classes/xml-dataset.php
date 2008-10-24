@@ -25,6 +25,10 @@ class XML_Dataset {
 	public function __get($key) {
 		return $this->root->$key;
 	}
+	
+	public function asXML() {
+		return $this->root->asXML();
+	}
 
 	function addNode($name, $attributes = array()) {
 		$node = $this->root->addChild($name);
