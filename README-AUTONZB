@@ -7,7 +7,7 @@ new episodes to the queue as they come along.
 
 You'll need to do a few things to make it work.
 
- * Set cron.php to run every x hours.
+ * Set `manage.php update` to run every x hours.
  * Make sure feeds.xml is writable by the user the cron job runs as.
  * Use the new bookmarklet to add feeds to the list. You can see the ones you currently
    have under the new tab, 'NZB Feeds'. When you add one, it takes note of the latest episode
@@ -20,3 +20,6 @@ There's a lot left to do:
  * General code tidying.
 
 But, give this a go, and let me know what you think.
+
+For more information, I've created a page on the trac wiki, titled 'HellaWorldInfo'.
+That page explains what you can do with manage.php, which will soon be integrated into the 'NZB Feeds' tab.
