@@ -20,15 +20,16 @@ if ($verbose)
 
 // Give the user some help.
 if (in_array('--help', $args)) {
-	die("Usage:\n\tphp manage.php remove <show name> [show name] ...\n"
-		."OR\n"
+	die("Usage:\n"
 		."\tphp manage.php add <url>\n"
+		."OR\n"		
+		."\tphp manage.php remove <show name> [show name] ...\n"
 		."OR\n"
 		."\tphp manage.php list\n"
 		."OR\n"
-		."\tphp manage.php latest <show name> [episode number]"
+		."\tphp manage.php latest <show name> [episode number]\n"
 		."OR\n"
-		."\tphp manage.php [-v] cron [show name] [show name]");
+		."\tphp manage.php [-v] update [show name] [show name]\n");
 }
 
 require_once('classes/autoload.php');
@@ -96,11 +97,17 @@ switch ($command) {
 		
 		// Loop over each feed, parse it, see if the latest episode has changed.
 		foreach ($manager->feeds(TRUE) as $feed) {
+			// Keep track if this feed was specifically requested.
+			$specified = FALSE;
+			
 			// Only fetch the ones specified, if any.
 			if ((bool) count($args)) {
 				if (! in_array(strtolower($feed['name']), $args)) {
 					$verbose AND printf("Skipping %s\n", $feed['name']);
 					continue;
+				} else {
+					$specified = TRUE;
+					$verbose OR printf('Checking %s... ', $feed['name']);
 				};
 			};
 
@@ -129,7 +136,7 @@ switch ($command) {
 					echo $e->getMessage(), "\n";
 				}
 			} else {
-				$verbose AND printf("No new episode (%d)\n", $parsed->episode);
+				($specified OR $verbose) AND printf("No new episode (%d)\n", $parsed->episode);
 			}
 		}
 		
