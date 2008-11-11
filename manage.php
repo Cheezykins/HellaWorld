@@ -32,11 +32,14 @@ if (in_array('--help', $args)) {
 		."\tphp manage.php [-v] update [show name] [show name]\n");
 }
 
-require_once('classes/autoload.php');
-require_once('config.php');
+// We need to know the app path before we can include the config.
+define('APPPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+
+require_once(APPPATH.'config.php');
+require_once(APPPATH.'classes/autoload.php');
 $controller = new HellaController($config['host'], $config['port'], $config['username'], $config['password']);
 
-$manager = new Feed_Manager();
+$manager = new Feed_Manager(APPPATH.'feeds.xml');
 
 // Grab the command off the args.
 $command = array_shift($args);

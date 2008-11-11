@@ -8,8 +8,8 @@
 class Feed_Manager {
 	protected $dataset;
 	
-	public function __construct() {
-		$this->dataset = new XML_Dataset('feeds.xml');
+	public function __construct($file_name) {
+		$this->dataset = new XML_Dataset($file_name);
 	}
 	
 	public function add($url) {
