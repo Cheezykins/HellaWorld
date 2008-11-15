@@ -356,7 +356,7 @@ $Id$
 		
 		// Auto-NZB
 		if (array_key_exists('addfeed', $_GET)) {
-			$manager = new Feed_Manager();
+			$manager = new Feed_Manager(APPPATH.'feeds.xml');
 			$manager->add($_GET['addfeed']);
 		}
 
