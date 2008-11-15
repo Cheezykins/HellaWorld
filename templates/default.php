@@ -219,7 +219,7 @@ echo "var hw_url = '".$hw_url."'; var scriptElem = document.createElement('scrip
 <?php
 	// We might need to instantiate a manager.
 	if (! isset($manager))
-		$manager = new Feed_Manager();
+		$manager = new Feed_Manager(APPPATH.'feeds.xml');
 	
 	// Grab the feeds.
 	$feeds = $manager->feeds(TRUE);
