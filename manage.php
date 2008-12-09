@@ -121,9 +121,19 @@ switch ($command) {
 
 			// Fetch the data from newzbin.
 			$verbose AND printf("Fetching feed for %s... ", $feed['name']);
-			$atom = new Atom_Feed($feed['url']);
-			$latest = $atom->entry[0];
-			$parsed = nzb::parse($latest->title);
+
+			try {
+				$atom = new Atom_Feed($feed['url']);
+
+				if (! (bool) count($atom->entry))
+					throw new Exception('There are no items in this feed.');
+
+				$latest = $atom->entry[0];
+				$parsed = nzb::parse($latest->title);
+			} catch (Exception $e) {
+				echo 'Error: ', $e->getMessage(), "\n";
+				continue; // Skip this broken feed.
+			}
 
 			// Is the 1st item newer than the latest we recorded?
 			if ($parsed->episode > $feed['latest_episode']) {
