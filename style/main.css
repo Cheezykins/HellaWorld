@@ -250,6 +250,10 @@ ul.queuecontrols li a img {
 	border: 0;
 }
 
+.removecontrols {
+	float: right;
+}
+
 select {
 	width: 200px;
 }

@@ -125,29 +125,7 @@
 		$('#queue').html(queue);
 		makeSortable();
 		if (json.showfinished) {
-			$('#finishedcount').html('<?php printf(_('Finished items: %s'), "' + json.finishedlength + '"); ?>');
-		}
-		if (json.showfinished) {
-			var finished = '';
-			if (json.finished.length > 0) {
-				for (i = 0; i < json.finished.length; i++) {
-					finished += '<li class="queuebox ' + json.finished[i].type + '">';
-					if (json.finished[i].url != '') {
-						finished += '<div><a class="queuetitle" href="' + json.finished[i].url + '">' + json.finished[i].archiveName + '</a></div>';
-					} else {
-						finished += '<div class="queuetitle">' + json.finished[i].archiveName + '</div>';
-					}
-					finished += '<ul class="queuecontrols"><li class="control"><a href="index.php?removefinished=' + json.finished[i].index + '"><?php echo _('Remove'); ?></a></li></ul>';
-					finished += '<div class="queuestats"><?php printf(_('Finished on: %s Processing Time: %s'), "' + json.finished[i].finishedTime + '", "' + json.finished[i].elapsedTime"); ?>;
-					if (json.finished[i].parMessage != '') {
-						finished += '<?php printf(_(' Par message: %s'), "' + json.finished[i].parMessage"); ?>;
-					}
-					finished += '</div></li>';
-				}
-			} else {
-				finished += '<li class="queuebox" style="text-align: center; font-weight: bold;"><?php echo _('No Finished Items'); ?></li>';
-			}
-			$('#finished').html(finished);
+		$('#fragment-2').html(json.finished);
 		}
 		var log = '';
 		for (i = 0; i < json.log.length; i++) {

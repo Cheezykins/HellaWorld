@@ -77,7 +77,7 @@ $Id$
 					</form>
 					<form method="post" enctype="multipart/form-data" action="<?php echo $self; ?>">
 						<fieldset>
-							<label for="nzbupload" ><?php echo _('Upload NZB:'); ?><br/> <input size=27 type="file" name="nzbupload" id="nzbupload" /></label>
+							<label for="nzbupload" ><?php echo _('Upload NZB:'); ?><br/> <input size="27" type="file" name="nzbupload" id="nzbupload" /></label>
 							<input type="submit" value="Go" style="float:right;" />
 						</fieldset>
 					</form>
@@ -165,42 +165,7 @@ $Id$
 	$baseurl = (!strstr($config['basepath'], '://') ? $protocol . '://' . htmlentities($_SERVER['HTTP_HOST']) : '').$config['basepath'].'/';
 ?>
 <div id="fragment-2">
-<div id="finishedbox">
-	<form action="<?php echo $self; ?>" method="post">
-		<div id="finishedcontrols">
-			<span id="finishedcount"><?php printf(_('Finished items: %s'), $finishedcount); ?></span>
-			<?php if ($finishedcount > 0): ?>
-			<input type="submit" name="clearnzbs" value="<?php echo _('Clear Finished NZBs'); ?>" />
-			<?php endif; ?>
-		</div>
-	</form>
-	<ul id="finished">
-		<?php if ($finishedcount == 0): ?>
-			<li class="queuebox" style="text-align: center; font-weight: bold;"><?php echo _('No Finished Items'); ?></li>
-		<?php else: ?>
-			<?php $i = 0; foreach($x->item as $item):
-				$i++; $durl = '';
-				if (!strncmp($config['destpath'], (string)$item->destDir, strlen($config['destpath'])) && is_dir((string)$item->destDir)):
-					$durl = $baseurl.substr((string)$item->destDir, strlen($config['destpath'])+1);
-				endif
-			?>
-			<li class="queuebox <?php echo (((string)$item->type == 'SUCCESS') ? 'good' : 'bad'); ?>">
-				<div>
-					<?php if ($config['showlinks'] && !empty($durl)): ?>
-					<div><a class="queuetitle" href="<?php echo $durl; ?>"><?php echo (string)$item->archiveName; ?></a></div>
-					<?php else: ?>
-					<div class="queuetitle"><?php echo (string)$item->archiveName; ?></div>
-					<?php endif ?>
-				</div>
-				<ul class="queuecontrols">
-					<li class="control"><a href="<?php echo $self; ?>?removefinished=<?php echo $i; ?>"><?php echo _('Remove'); ?></a></li>
-				</ul>
-				<div class="queuestats"><?php printf(_('Finished on: %s Processing Time: %s'), date('M dS - H:i:s', (int)$item->finishedTime), (string)$item->elapsedTime); if (trim((string)$item->parMessage) != ''): printf(_(' Par message: %s'), (string)$item->parMessage); endif; ?></div>
-			</li>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</ul>
-</div>
+<?php require_once('templates/finished.php'); echo $finished_view; ?>
 </div>
 		<?php endif; ?>
 <div id="fragment-3">
