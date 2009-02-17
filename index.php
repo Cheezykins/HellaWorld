@@ -360,6 +360,18 @@ $Id$
 			$manager->add($_GET['addfeed']);
 		}
 
+		// Have they ticked any "remove" boxes?
+		if (array_key_exists('removefinished', $_POST) && is_array($remove = $_POST['removefinished']) && (bool) count($remove)) {
+			// Reverse sort to avoid reindexing problems on the array.
+			$remove = array_keys($remove);
+			rsort($remove);
+
+			foreach ($remove as $id)
+				unset($x->item[$id - 1]);
+
+			file_put_contents('completed.xml', $x->asXML());
+		}
+
 	} catch (Exception $e) {
 		$errormessage = $e->getMessage();
 		include 'templates/error.php';

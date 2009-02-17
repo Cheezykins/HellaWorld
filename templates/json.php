@@ -75,26 +75,8 @@ foreach ($c->queue as $queue) {
 }
 if ($config['showfinished']) {
 	$hellainfo['showfinished'] = true;
-	$hellainfo['finished'] = array();
-	$baseurl = (!strstr($config['basepath'], '://') ? $protocol . '://' . htmlentities($_SERVER['HTTP_HOST']) : '').$config['basepath'].'/';
-	$i = 0;
-	foreach($x->item as $item) {
-		$tmp = array();
-		$durl = '';
-		if (!strncmp($config['destpath'], (string)$item->destDir, strlen($config['destpath']))) {
-			$durl = $baseurl.substr((string)$item->destDir, strlen($config['destpath'])+1);
-		}
-		$tmp['index'] = ++$i;
-		$tmp['type'] = (((string)$item->type == 'SUCCESS') ? 'good' : 'bad' );
-		$tmp['archiveName'] = (string)$item->archiveName;
-		$tmp['destDir'] = (string)$item->destDir;
-		$tmp['url'] = $durl;
-		$tmp['elapsedTime'] = (string)$item->elapsedTime;
-		$tmp['finishedTime'] = date('M dS - H:i:s', (int)$item->finishedTime);
-		$tmp['parMessage'] = trim((string)$item->parMessage);
-		$hellainfo['finished'][] = $tmp;
-	}
-	$hellainfo['finishedlength'] = $i;
+	require_once('templates/finished.php');
+	$hellainfo['finished'] = $finished_view;
 } else {
 	$hellainfo['showfinished'] = false;
 }
