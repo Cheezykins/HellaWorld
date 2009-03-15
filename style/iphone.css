@@ -1,0 +1,78 @@
+body > ul > li span.label{
+/*	font-size:11px;
+	display:block;
+	clear:both;
+*/
+color:#666;
+	font-weight:normal;
+}
+
+.legend{
+	font-size:10px;
+	font-weight:normal;
+	color:#666;
+}
+
+li.resume{
+	background:url('../images/ABResumeCircle.png');
+}                    
+li.pause{            
+	background:url('../images/ABPauseCircle.png');
+}                    
+li.cancel{           
+	background:url('../images/ABStopCircle.png');
+}                    
+li.information{      
+	background:url('../images/information.png');
+}                    
+li.delete{           
+	background:url('../images/ABRemoveCircle.png');
+}                    
+li.force{            
+	background:url('../images/ABResumeCircle.png');
+}                    
+li.drag{             
+	background:url('../images/dragicon.png');
+}                                
+li.clear{                        
+	background:url('../images/ABStopCircle.png');
+}                                
+li.add{                          
+	background: url('../images/ABAddCircle.png');
+}
+
+li.resume,
+li.pause,
+li.cancel,
+li.information,
+li.delete,
+li.force,
+li.drag,
+li.clear,
+li.add{
+	padding-left:40px;
+	height:29px;
+	background-position:6px 8px;
+	background-repeat:no-repeat;
+	line-height:33px;
+}
+
+li.drag{
+	padding:4px 0;
+	background-position:0 8px;
+	height:42px;
+	line-height:normal;
+	width:100%;
+}
+span.drag{
+	float:left;
+	display:block;
+	height:100%;
+	width:10px;
+	margin:-5px 10px -5px 0;
+
+	text-indent:-9999px;
+	width:40px;
+	height:35px;
+	float:left;
+}
