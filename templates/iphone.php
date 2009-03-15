@@ -56,7 +56,7 @@ function processingDetails($processing){
 	return htmlspecialchars($processing);
 }
 $queueOptions="";
-function queueDetails($queue,$i=0){
+function queueDetails($queue, $i=0, $self){
 	global $c, $queueOptions;
 	
 	$out="";
@@ -147,7 +147,7 @@ function queueDetails($queue,$i=0){
 			<?php
 			if ($c->queueLength > 0):
 				if ($c->queueLength == 1):
-					echo queueDetails($c->queue[0]);
+					echo queueDetails($c->queue[0], 0, $self);
 				else:
 					echo "<a href='#downloadQueue'><span class='label'>Queue : </span>".$c->queueLength." items</a>";
 				endif;
@@ -210,7 +210,7 @@ function queueDetails($queue,$i=0){
 				echo "<ul id='downloadQueue' title='Queued Items'>";
 				$i=0; foreach($c->queue as $queue){
 					$i++;
-					echo "<li class='drag' id='queue-order_{$queue['id']}'>".queueDetails($queue, $i)."</li>";
+					echo "<li class='drag' id='queue-order_{$queue['id']}'>".queueDetails($queue, $i, $self)."</li>";
 				}
 				echo "</ul>";
 			}
