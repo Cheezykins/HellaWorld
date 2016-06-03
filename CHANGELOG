@@ -12,7 +12,7 @@
 
 1.9
 
-* Fixed a bug where the total number of iles and the number of NZB files
+* Fixed a bug where the total numbrsdfsdffer of iles and the number of NZB files
   processed wasn't showing. [ticket:5]
 
 * Fixed a bug where the automatic refresh would reduce the log to a single
